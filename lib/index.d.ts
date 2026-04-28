@@ -20,7 +20,7 @@ declare namespace FormTypes {
 
   // BASE DATA TYPES
 
-  export type ScalarFieldValue = Date | Set<string> | boolean | number | string | undefined;
+  export type ScalarFieldValue = boolean | Date | number | Set<string> | string | undefined;
 
   export type FieldsetValue = { [key: string]: ScalarFieldValue };
 
@@ -184,7 +184,7 @@ declare namespace FormTypes {
     TValue extends RequiredFieldValue<ScalarFieldValue>
   > = {
     kind: 'dynamic';
-    render: (this: void, fieldset: Partial<TFieldsetValue>) => ScalarField<TValue> | null;
+    render: (this: void, fieldset: Partial<TFieldsetValue>) => null | ScalarField<TValue>;
   };
 
   export type Fieldset<TFieldsetValue extends NonNullableRecord<FieldsetValue>> = {
@@ -203,6 +203,7 @@ declare namespace FormTypes {
   export type NumberRecordField<
     TValue extends RequiredFieldValue<NumberRecordFieldValue> = RequiredFieldValue<NumberRecordFieldValue>
   > = FieldMixin<{
+    disableAutoPrefix?: boolean;
     items: {
       [K in keyof TValue]: {
         description?: string;
@@ -249,7 +250,7 @@ declare namespace FormTypes {
   export type DynamicField<TData extends Data, TValue extends RequiredFieldValue = RequiredFieldValue> = {
     deps: readonly Extract<keyof TData, string>[];
     kind: 'dynamic';
-    render: (this: void, data: PartialData<TData>) => StaticField<TValue> | null;
+    render: (this: void, data: PartialData<TData>) => null | StaticField<TValue>;
   };
 
   export type UnknownField<
