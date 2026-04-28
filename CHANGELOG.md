@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.12.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v0.11.0...v0.12.0) (2026-04-28)
+
+### Features
+
+* add disableAutoPrefix option to NumberRecordField ([119d537](https://github.com/DouglasNeuroInformatics/libui-form-types/commit/119d5372b5d8044a2843a6ecbb51e1c30e4dba76))
+
 ## [0.11.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v0.10.3...v0.11.0) (2024-09-05)
 
 
