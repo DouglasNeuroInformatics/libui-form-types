@@ -203,6 +203,7 @@ declare namespace FormTypes {
   export type NumberRecordField<
     TValue extends RequiredFieldValue<NumberRecordFieldValue> = RequiredFieldValue<NumberRecordFieldValue>
   > = FieldMixin<{
+    disableAutoPrefix?: boolean;
     items: {
       [K in keyof TValue]: {
         description?: string;
