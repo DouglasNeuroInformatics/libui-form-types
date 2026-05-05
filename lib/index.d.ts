@@ -196,6 +196,7 @@ declare namespace FormTypes {
   export type RecordArrayField<
     TValue extends RequiredFieldValue<RecordArrayFieldValue> = RequiredFieldValue<RecordArrayFieldValue>
   > = FieldMixin<{
+    disableAutoSuffix?: boolean;
     fieldset: Fieldset<TValue[number]>;
     kind: 'record-array';
   }>;
