@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.13.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v0.12.0...v0.13.0) (2026-05-05)
+
+### Features
+
+* add disableAutoSuffix option to RecordArrayField ([7e8237f](https://github.com/DouglasNeuroInformatics/libui-form-types/commit/7e8237f97b63c6b9b43acf3c46fa046175807c95))
+
 ## [0.12.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v0.11.0...v0.12.0) (2026-04-28)
 
 ### Features
