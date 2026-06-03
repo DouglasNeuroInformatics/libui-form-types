@@ -114,6 +114,7 @@ declare namespace FormTypes {
         disableAutoPrefix?: boolean;
         kind: 'number';
         options: { [K in TValue]: string };
+        sort?: (a: number, b: number) => number;
         variant: 'radio' | 'select';
       }
     | {
