@@ -31,7 +31,7 @@
   "devDependencies": {
     "@douglasneuroinformatics/eslint-config": "^6.0.0",
     "@douglasneuroinformatics/prettier-config": "^0.3.0",
-    "@douglasneuroinformatics/semantic-release": "^0.2.1",
+    "@douglasneuroinformatics/semantic-release": "^0.2.2",
     "@douglasneuroinformatics/tsconfig": "^2.0.0",
     "@types/lodash": "^4.17.5",
     "concurrently": "^8.2.2",
