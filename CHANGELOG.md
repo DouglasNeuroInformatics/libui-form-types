@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.14.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v0.13.0...v0.14.0) (2026-06-03)
+
+### Features
+
+* add sort option to number field ([41a2933](https://github.com/DouglasNeuroInformatics/libui-form-types/commit/41a2933c208cca77c50e1ec103c33151e044b704))
+
 ## [0.13.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v0.12.0...v0.13.0) (2026-05-05)
 
 ### Features
