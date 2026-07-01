@@ -100,7 +100,7 @@ declare namespace FormTypes {
     | {
         kind: 'string';
         options: { [K in TValue]: string };
-        variant: 'radio' | 'select';
+        variant: 'combobox' | 'radio' | 'select';
       }
     | {
         kind: 'string';
