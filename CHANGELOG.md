@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.15.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v0.14.0...v0.15.0) (2026-07-01)
+
+### Features
+
+* add combobox option to string field ([021e53b](https://github.com/DouglasNeuroInformatics/libui-form-types/commit/021e53bd385fe0e3a54b78cb3fb947d64ac20bc9))
+
 ## [0.14.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v0.13.0...v0.14.0) (2026-06-03)
 
 ### Features
