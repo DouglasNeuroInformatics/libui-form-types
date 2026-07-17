@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 import type { IntRange, Simplify } from 'type-fest';
 
 /** @public */
@@ -270,10 +272,17 @@ declare namespace FormTypes {
     fields: {
       [K in keyof TData]?: UnknownField<RequiredData<TData>, K>;
     };
+    kind?: 'fields-group';
     title?: string;
   };
 
-  export type Content<TData extends Data = Data> = Fields<TData> | FieldsGroup<TData>[];
+  /** An item of arbitrary JSX that may be inlined amongst the groups of a form */
+  export type Block<TData extends Data = Data> = {
+    kind: 'block';
+    render: (this: void, data: PartialData<TData>) => ReactNode;
+  };
+
+  export type Content<TData extends Data = Data> = (Block<TData> | FieldsGroup<TData>)[] | Fields<TData>;
 }
 
 export import NonNullableRecord = FormTypes.NonNullableRecord;
@@ -313,6 +322,7 @@ export import DynamicFormField = FormTypes.DynamicField;
 export import UnknownFormField = FormTypes.UnknownField;
 export import FormFields = FormTypes.Fields;
 export import FormFieldsGroup = FormTypes.FieldsGroup;
+export import FormBlock = FormTypes.Block;
 export import FormContent = FormTypes.Content;
 
 export default FormTypes;

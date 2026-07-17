@@ -6,6 +6,8 @@ import type {
   BooleanFormField,
   DateFormField,
   FieldsetValue,
+  FormBlock,
+  FormContent,
   FormFields,
   NumberRecordFieldValue,
   OptionalFieldValue,
@@ -83,6 +85,13 @@ type ABCD = 'a' | 'b' | 'c' | 'd';
   expectTypeOf<keyof Extract<UnknownFormField<{ _: string }>, { options: object }>['options']>().toBeString();
   expectTypeOf<keyof Extract<UnknownFormField<{ _: ABC }>, { options: object }>['options']>().toEqualTypeOf<ABC>();
   expectTypeOf<UnknownFormField<{ _: ABC }>['kind']>().toMatchTypeOf<'dynamic' | 'string'>();
+}
+
+/** FormBlock */
+{
+  expectTypeOf<FormBlock<{ _: string }>['kind']>().toEqualTypeOf<'block'>();
+  // a grouped content array accepts blocks alongside field groups
+  expectTypeOf<[FormBlock<{ _: string }>]>().toMatchTypeOf<Extract<FormContent<{ _: string }>, unknown[]>>();
 }
 
 /** FormFields */
