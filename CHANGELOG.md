@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.0.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v0.15.0...v1.0.0) (2026-07-17)
+
+### ⚠ BREAKING CHANGES
+
+* Consumers now need to handle blocks in FormContent
+
+### Features
+
+* add block option to fields ([8afb57e](https://github.com/DouglasNeuroInformatics/libui-form-types/commit/8afb57eebc1979a17d63f44fb606181944381e5f))
+
 ## [0.15.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v0.14.0...v0.15.0) (2026-07-01)
 
 ### Features
