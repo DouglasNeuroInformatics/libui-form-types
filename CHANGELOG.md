@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v1.0.0...v1.1.0) (2026-07-30)
+
+### Features
+
+* add context to form blocks ([2ba37c0](https://github.com/DouglasNeuroInformatics/libui-form-types/commit/2ba37c03f0d4548b6d05c007ffb010a2f78f11bd))
+
 ## [1.0.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v0.15.0...v1.0.0) (2026-07-17)
 
 ### ⚠ BREAKING CHANGES
