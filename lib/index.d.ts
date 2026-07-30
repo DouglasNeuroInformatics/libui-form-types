@@ -279,7 +279,13 @@ declare namespace FormTypes {
   /** An item of arbitrary JSX that may be inlined amongst the groups of a form */
   export type Block<TData extends Data = Data> = {
     kind: 'block';
-    render: (this: void, data: PartialData<TData>) => ReactNode;
+    render: (
+      this: void,
+      data: PartialData<TData>,
+      context: {
+        t: (translations: { [key: string]: string }) => string;
+      }
+    ) => ReactNode;
   };
 
   export type Content<TData extends Data = Data> = (Block<TData> | FieldsGroup<TData>)[] | Fields<TData>;
