@@ -95,6 +95,19 @@ declare namespace FormTypes {
 
   export type StringField<TValue extends string = string> = FieldMixin<
     | {
+        /**
+         * Whether text that does not match any option may be entered. When enabled, text that does not
+         * resolve to an option is committed as the value instead of being discarded when the popup
+         * closes. Note that such a value is not a key of `options`, so the validation schema for this
+         * field must accept arbitrary strings.
+         * @default false
+         */
+        allowCustomValue?: boolean;
+        kind: 'string';
+        options: { [K in TValue]: string };
+        variant: 'combobox';
+      }
+    | {
         calculateStrength?: (this: void, password: string) => IntRange<0, 5>;
         kind: 'string';
         variant: 'password';
@@ -102,7 +115,7 @@ declare namespace FormTypes {
     | {
         kind: 'string';
         options: { [K in TValue]: string };
-        variant: 'combobox' | 'radio' | 'select';
+        variant: 'radio' | 'select';
       }
     | {
         kind: 'string';
