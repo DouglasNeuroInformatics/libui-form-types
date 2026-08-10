@@ -46,6 +46,50 @@ type ABCD = 'a' | 'b' | 'c' | 'd';
   expectTypeOf<StringFormField<ABC>>().not.toMatchTypeOf<StringFormField<ABCD>>();
 }
 
+/** StringFormField - combobox variant */
+{
+  type ComboBoxField = Extract<StringFormField<ABC>, { variant: 'combobox' }>;
+
+  expectTypeOf<ComboBoxField['allowCustomValue']>().toEqualTypeOf<boolean | undefined>();
+  expectTypeOf<ComboBoxField['variant']>().toEqualTypeOf<'combobox'>();
+  expectTypeOf<keyof Extract<StringFormField<ABC>, { options: object }>['options']>().toEqualTypeOf<ABC>();
+  expectTypeOf<Extract<StringFormField<ABC>, { options: object }>['variant']>().toEqualTypeOf<
+    'combobox' | 'radio' | 'select'
+  >();
+
+  // narrowing on the discriminator must reach the flag, as consumers do at runtime
+  const field = {} as StringFormField<ABC>;
+  if (field.variant === 'combobox') {
+    expectTypeOf(field.allowCustomValue).toEqualTypeOf<boolean | undefined>();
+  }
+
+  const combobox = {
+    allowCustomValue: true,
+    kind: 'string',
+    label: '',
+    options: { a: '', b: '', c: '' },
+    variant: 'combobox'
+  } satisfies StringFormField<ABC>;
+  expectTypeOf(combobox.allowCustomValue).toEqualTypeOf<true>();
+
+  const _select = {
+    // @ts-expect-error - allowCustomValue is only valid for the combobox variant
+    allowCustomValue: true,
+    kind: 'string',
+    label: '',
+    options: { a: '', b: '', c: '' },
+    variant: 'select'
+  } satisfies StringFormField<ABC>;
+
+  const _formField: FormFields<{ _: string }>['_'] = {
+    allowCustomValue: true,
+    kind: 'string',
+    label: '',
+    options: { a: '' },
+    variant: 'combobox'
+  };
+}
+
 /** ScalarFormField */
 {
   expectTypeOf<ScalarFormField['kind']>().toMatchTypeOf<AnyScalarFormField['kind']>();
