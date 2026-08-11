@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v1.1.0...v1.2.0) (2026-08-11)
+
+### Features
+
+* separate combobox string type and add allowCustomValue flag ([65e30c0](https://github.com/DouglasNeuroInformatics/libui-form-types/commit/65e30c0c56396d6acb3fe051d65947b34b715e35))
+
 ## [1.1.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v1.0.0...v1.1.0) (2026-07-30)
 
 ### Features
