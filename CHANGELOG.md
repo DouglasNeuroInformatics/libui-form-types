@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v1.2.0...v1.3.0) (2026-08-12)
+
+### Features
+
+* fix default Value of combobox so that it can be used properly in odc ([73d08a6](https://github.com/DouglasNeuroInformatics/libui-form-types/commit/73d08a6e0ba51a31deae877ec21f7d0daccdaeb8))
+
 ## [1.2.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v1.1.0...v1.2.0) (2026-08-11)
 
 ### Features
