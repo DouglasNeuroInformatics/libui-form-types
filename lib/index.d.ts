@@ -100,7 +100,7 @@ declare namespace FormTypes {
          * resolve to an option is committed as the value instead of being discarded when the popup
          * closes. Note that such a value is not a key of `options`, so the validation schema for this
          * field must accept arbitrary strings.
-         * @default false
+         * @defaultValue false
          */
         allowCustomValue?: boolean;
         kind: 'string';
