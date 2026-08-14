@@ -46,6 +46,35 @@ type ABCD = 'a' | 'b' | 'c' | 'd';
   expectTypeOf<StringFormField<ABC>>().not.toMatchTypeOf<StringFormField<ABCD>>();
 }
 
+/** StringFormField - password variant */
+{
+  type PasswordField = Extract<StringFormField, { variant: 'password' }>;
+
+  expectTypeOf<PasswordField['generatePassword']>().toEqualTypeOf<((this: void) => string) | undefined>();
+
+  // narrowing on the discriminator must reach the method, as consumers do at runtime
+  const field = {} as StringFormField;
+  if (field.variant === 'password') {
+    expectTypeOf(field.generatePassword?.()).toEqualTypeOf<string | undefined>();
+  }
+
+  const _password = {
+    calculateStrength: () => 4 as const,
+    generatePassword: () => '',
+    kind: 'string',
+    label: '',
+    variant: 'password'
+  } satisfies StringFormField;
+
+  const _input = {
+    // @ts-expect-error - generatePassword is only valid for the password variant
+    generatePassword: () => '',
+    kind: 'string',
+    label: '',
+    variant: 'input'
+  } satisfies StringFormField;
+}
+
 /** StringFormField - combobox variant */
 {
   type ComboBoxField = Extract<StringFormField<ABC>, { variant: 'combobox' }>;
