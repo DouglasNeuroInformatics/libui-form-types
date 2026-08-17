@@ -50,25 +50,25 @@ type ABCD = 'a' | 'b' | 'c' | 'd';
 {
   type PasswordField = Extract<StringFormField, { variant: 'password' }>;
 
-  expectTypeOf<PasswordField['generatePassword']>().toEqualTypeOf<((this: void) => string) | undefined>();
+  expectTypeOf<PasswordField['generatePassphrase']>().toEqualTypeOf<((this: void) => string) | undefined>();
 
   // narrowing on the discriminator must reach the method, as consumers do at runtime
   const field = {} as StringFormField;
   if (field.variant === 'password') {
-    expectTypeOf(field.generatePassword?.()).toEqualTypeOf<string | undefined>();
+    expectTypeOf(field.generatePassphrase?.()).toEqualTypeOf<string | undefined>();
   }
 
   const _password = {
     calculateStrength: () => 4 as const,
-    generatePassword: () => '',
+    generatePassphrase: () => '',
     kind: 'string',
     label: '',
     variant: 'password'
   } satisfies StringFormField;
 
   const _input = {
-    // @ts-expect-error - generatePassword is only valid for the password variant
-    generatePassword: () => '',
+    // @ts-expect-error - generatePassphrase is only valid for the password variant
+    generatePassphrase: () => '',
     kind: 'string',
     label: '',
     variant: 'input'
