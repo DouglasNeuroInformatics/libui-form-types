@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v1.3.0...v1.4.0) (2026-08-19)
+
+### Features
+
+* adjust method type to passphrase instead of password ([c422d78](https://github.com/DouglasNeuroInformatics/libui-form-types/commit/c422d780a10a92fa81ef3911e6c2a4ec7e7a2789))
+* new optional generate password method for password string field ([d970696](https://github.com/DouglasNeuroInformatics/libui-form-types/commit/d9706968265112384f30ceb2df31711c16892be4))
+
 ## [1.3.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v1.2.0...v1.3.0) (2026-08-12)
 
 ### Features
