@@ -110,11 +110,11 @@ declare namespace FormTypes {
     | {
         calculateStrength?: (this: void, password: string) => IntRange<0, 5>;
         /**
-         * An optional function used to generate a passphrase on behalf of the user. The returned value
+         * An optional function used to generate a password on behalf of the user. The returned value
          * is expected to pass the strength test for this field (i.e., the maximum score from
          * `calculateStrength`), as well as the validation schema for this field.
          */
-        generatePassphrase?: (this: void) => string;
+        generatePassword?: (this: void) => string;
         kind: 'string';
         variant: 'password';
       }
