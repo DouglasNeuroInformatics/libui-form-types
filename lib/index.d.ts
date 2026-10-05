@@ -156,6 +156,12 @@ declare namespace FormTypes {
 
   export type DateField = FieldMixin<{
     kind: 'date';
+    /**
+     * Whether to render a date picker only, or a date picker alongside a time input. In both cases,
+     * the value stored in the form is a single `Date`.
+     * @defaultValue 'date'
+     */
+    variant?: 'date' | 'datetime';
   }>;
 
   export type BooleanField = FieldMixin<

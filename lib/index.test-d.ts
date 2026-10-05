@@ -119,6 +119,26 @@ type ABCD = 'a' | 'b' | 'c' | 'd';
   };
 }
 
+/** DateFormField */
+{
+  expectTypeOf<DateFormField['variant']>().toEqualTypeOf<'date' | 'datetime' | undefined>();
+
+  const _date = { kind: 'date', label: '' } satisfies DateFormField;
+  const _datetime = { kind: 'date', label: '', variant: 'datetime' } satisfies DateFormField;
+  const _invalid = {
+    kind: 'date',
+    label: '',
+    // @ts-expect-error - variant must be either 'date' or 'datetime'
+    variant: 'time'
+  } satisfies DateFormField;
+
+  const _formField: FormFields<{ _: Date }>['_'] = {
+    kind: 'date',
+    label: '',
+    variant: 'datetime'
+  };
+}
+
 /** ScalarFormField */
 {
   expectTypeOf<ScalarFormField['kind']>().toMatchTypeOf<AnyScalarFormField['kind']>();
