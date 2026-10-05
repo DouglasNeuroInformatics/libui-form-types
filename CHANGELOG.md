@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.5.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v1.4.0...v1.5.0) (2026-10-05)
+
+### Features
+
+* add datetime as a variant to the form types ([14518c2](https://github.com/DouglasNeuroInformatics/libui-form-types/commit/14518c2e5d14981d0b0a21b7afde725255eeae24))
+
 ## [1.4.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v1.3.0...v1.4.0) (2026-08-19)
 
 ### Features
