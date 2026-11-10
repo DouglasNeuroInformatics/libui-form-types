@@ -180,6 +180,16 @@ declare namespace FormTypes {
   >;
 
   export type SetField<TValue extends Set<string> = Set<string>> = FieldMixin<{
+    /**
+     * Options that cannot be selected together with any other option. When one of these options is
+     * selected, all other options are disabled until it is deselected. If several options are listed,
+     * each is exclusive of every other option, including the other exclusive options.
+     *
+     * Note that this is only enforced in the UI. Values set programmatically (e.g., initial values) are
+     * not modified, so the validation schema for this field should enforce the rule if it is required.
+     * @defaultValue []
+     */
+    exclusiveOptions?: TValue extends Set<infer TItem extends string> ? TItem[] : never;
     kind: 'set';
     options: TValue extends Set<infer TItem extends string>
       ? {
