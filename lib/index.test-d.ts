@@ -5,6 +5,7 @@ import type {
   AnyStaticFormField,
   BooleanFormField,
   DateFormField,
+  Fieldset,
   FieldsetValue,
   FormBlock,
   FormContent,
@@ -136,6 +137,76 @@ type ABCD = 'a' | 'b' | 'c' | 'd';
     kind: 'date',
     label: '',
     variant: 'datetime'
+  };
+}
+
+/** SetFormField */
+{
+  expectTypeOf<SetFormField<Set<ABC>>['exclusiveOptions']>().toEqualTypeOf<ABC[] | undefined>();
+  expectTypeOf<SetFormField['exclusiveOptions']>().toEqualTypeOf<string[] | undefined>();
+  expectTypeOf<ScalarFormField<Set<ABC>>['exclusiveOptions']>().toEqualTypeOf<ABC[] | undefined>();
+
+  const _exclusive = {
+    exclusiveOptions: ['c'],
+    kind: 'set',
+    label: '',
+    options: { a: '', b: '', c: '' },
+    variant: 'listbox'
+  } satisfies SetFormField<Set<ABC>>;
+
+  // exclusiveOptions is optional, so existing definitions are unaffected
+  const _omitted = {
+    kind: 'set',
+    label: '',
+    options: { a: '', b: '', c: '' },
+    variant: 'select'
+  } satisfies SetFormField<Set<ABC>>;
+
+  const _invalid = {
+    // @ts-expect-error - exclusiveOptions must only contain keys of options
+    exclusiveOptions: ['d'],
+    kind: 'set',
+    label: '',
+    options: { a: '', b: '', c: '' },
+    variant: 'listbox'
+  } satisfies SetFormField<Set<ABC>>;
+
+  const _formField: FormFields<{ _: Set<ABC> }>['_'] = {
+    exclusiveOptions: ['c'],
+    kind: 'set',
+    label: '',
+    options: { a: '', b: '', c: '' },
+    variant: 'listbox'
+  };
+
+  const _invalidFormField: FormFields<{ _: Set<ABC> }>['_'] = {
+    // @ts-expect-error - exclusiveOptions must only contain keys of options
+    exclusiveOptions: ['d'],
+    kind: 'set',
+    label: '',
+    options: { a: '', b: '', c: '' },
+    variant: 'listbox'
+  };
+
+  const _fieldset: Fieldset<{ _: Set<ABC> }> = {
+    _: {
+      exclusiveOptions: ['c'],
+      kind: 'set',
+      label: '',
+      options: { a: '', b: '', c: '' },
+      variant: 'listbox'
+    }
+  };
+
+  const _invalidFieldset: Fieldset<{ _: Set<ABC> }> = {
+    _: {
+      // @ts-expect-error - exclusiveOptions must only contain keys of options
+      exclusiveOptions: ['d'],
+      kind: 'set',
+      label: '',
+      options: { a: '', b: '', c: '' },
+      variant: 'listbox'
+    }
   };
 }
 
