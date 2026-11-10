@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.6.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v1.5.0...v1.6.0) (2026-11-10)
+
+### Features
+
+* add exclusiveOptions to SetField ([4db524b](https://github.com/DouglasNeuroInformatics/libui-form-types/commit/4db524bac5b0daa77da597b9a045e598a1a64c0b)), closes [#22](https://github.com/DouglasNeuroInformatics/libui-form-types/issues/22)
+
 ## [1.5.0](https://github.com/DouglasNeuroInformatics/libui-form-types/compare/v1.4.0...v1.5.0) (2026-10-05)
 
 ### Features
