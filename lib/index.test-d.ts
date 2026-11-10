@@ -10,7 +10,9 @@ import type {
   FormBlock,
   FormContent,
   FormFields,
+  NumberFormField,
   NumberRecordFieldValue,
+  NumberRecordFormField,
   OptionalFieldValue,
   RecordArrayFieldValue,
   RequiredFieldValue,
@@ -274,4 +276,70 @@ type ABCD = 'a' | 'b' | 'c' | 'd';
   expectTypeOf<keyof Extract<FormFields<{ _: Set<ABC> }>['_'], { options: object }>['options']>().toEqualTypeOf<ABC>();
   expectTypeOf<keyof Extract<FormFields<{ _: string }>['_'], { options: object }>['options']>().toBeString();
   expectTypeOf<keyof Extract<FormFields<{ _: ABC }>['_'], { options: object }>['options']>().toEqualTypeOf<ABC>();
+}
+
+/** NumberFormField - slider variant */
+{
+  type SliderField = Extract<NumberFormField, { variant: 'slider' }>;
+
+  expectTypeOf<SliderField['defaultValue']>().toEqualTypeOf<number | undefined>();
+  expectTypeOf<SliderField['marks']>().toEqualTypeOf<undefined | { [value: number]: string }>();
+  expectTypeOf<SliderField['showRange']>().toEqualTypeOf<boolean | undefined>();
+
+  // the new options are optional, so existing slider definitions remain valid
+  expectTypeOf<{
+    kind: 'number';
+    label: string;
+    max: number;
+    min: number;
+    variant: 'slider';
+  }>().toMatchTypeOf<NumberFormField>();
+
+  // the slider options do not exist on the other variants
+  expectTypeOf<Extract<NumberFormField, { variant: 'input' }>>().not.toHaveProperty('marks');
+}
+
+/** NumberRecordFormField */
+{
+  type Dimensions = { height: number; width: number };
+  type Items = { height: { label: string }; width: { label: string } };
+
+  expectTypeOf<{
+    items: Items;
+    kind: 'number-record';
+    label: string;
+    variant: 'input';
+  }>().toMatchTypeOf<NumberRecordFormField<Dimensions>>();
+
+  expectTypeOf<{
+    items: Items;
+    kind: 'number-record';
+    label: string;
+    options: { [key: number]: string };
+    variant: 'likert';
+  }>().toMatchTypeOf<NumberRecordFormField<Dimensions>>();
+
+  // the likert variant requires options
+  expectTypeOf<{
+    items: Items;
+    kind: 'number-record';
+    label: string;
+    variant: 'likert';
+  }>().not.toMatchTypeOf<NumberRecordFormField<Dimensions>>();
+
+  // each key of the value must have an item
+  expectTypeOf<{
+    items: { height: { label: string } };
+    kind: 'number-record';
+    label: string;
+    variant: 'input';
+  }>().not.toMatchTypeOf<NumberRecordFormField<Dimensions>>();
+
+  // the input variant has no options
+  expectTypeOf<Extract<NumberRecordFormField, { variant: 'input' }>>().not.toHaveProperty('options');
+
+  // a number record field remains assignable to the form content for its data type
+  expectTypeOf<{
+    dimensions: { items: Items; kind: 'number-record'; label: string; variant: 'input' };
+  }>().toMatchTypeOf<FormFields<{ dimensions: Dimensions }>>();
 }

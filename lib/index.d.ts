@@ -132,6 +132,28 @@ declare namespace FormTypes {
 
   export type NumberField<TValue extends number = number> = FieldMixin<
     | {
+        /**
+         * The value given to this field when it is displayed and has no value. Unlike a default in the
+         * validation schema, this value is visible to the user, and is submitted if the user does not
+         * change it. It should be between `min` and `max`.
+         */
+        defaultValue?: number;
+        kind: 'number';
+        /**
+         * Text annotations displayed below the slider track at the position of a given value (e.g.,
+         * `{ 0: 'Not at all', 10: 'Extremely' }`). Keys should be between `min` and `max`.
+         */
+        marks?: { [value: number]: string };
+        max: number;
+        min: number;
+        /**
+         * Whether to display the values of `min` and `max` at the ends of the slider track.
+         * @defaultValue false
+         */
+        showRange?: boolean;
+        variant: 'slider';
+      }
+    | {
         disableAutoPrefix?: boolean;
         kind: 'number';
         options: { [K in TValue]: string };
@@ -145,12 +167,6 @@ declare namespace FormTypes {
         /** @deprecated - this should be defined in the validationSchema for better use feedback  */
         min?: number;
         variant: 'input';
-      }
-    | {
-        kind: 'number';
-        max: number;
-        min: number;
-        variant: 'slider';
       }
   >;
 
@@ -239,20 +255,32 @@ declare namespace FormTypes {
     kind: 'record-array';
   }>;
 
+  export type NumberRecordFieldItems<
+    TValue extends RequiredFieldValue<NumberRecordFieldValue> = RequiredFieldValue<NumberRecordFieldValue>
+  > = {
+    [K in keyof TValue]: {
+      description?: string;
+      label: string;
+    };
+  };
+
   export type NumberRecordField<
     TValue extends RequiredFieldValue<NumberRecordFieldValue> = RequiredFieldValue<NumberRecordFieldValue>
-  > = FieldMixin<{
-    disableAutoPrefix?: boolean;
-    items: {
-      [K in keyof TValue]: {
-        description?: string;
-        label: string;
-      };
-    };
-    kind: 'number-record';
-    options: { [key: number]: string };
-    variant: 'likert';
-  }>;
+  > = FieldMixin<
+    | {
+        disableAutoPrefix?: boolean;
+        items: NumberRecordFieldItems<TValue>;
+        kind: 'number-record';
+        options: { [key: number]: string };
+        variant: 'likert';
+      }
+    | {
+        items: NumberRecordFieldItems<TValue>;
+        kind: 'number-record';
+        /** Each item is rendered as a number input, for questions that ask for several numbers (e.g., dimensions) */
+        variant: 'input';
+      }
+  >;
 
   export type CompositeField<TValue extends RequiredFieldValue<CompositeFieldValue>> =
     TValue extends RequiredFieldValue<RecordArrayFieldValue>
@@ -354,6 +382,7 @@ export import ScalarFormField = FormTypes.ScalarField;
 export import DynamicFieldsetField = FormTypes.DynamicFieldsetField;
 export import Fieldset = FormTypes.Fieldset;
 export import RecordArrayFormField = FormTypes.RecordArrayField;
+export import NumberRecordFieldItems = FormTypes.NumberRecordFieldItems;
 export import NumberRecordFormField = FormTypes.NumberRecordField;
 export import CompositeFormField = FormTypes.CompositeField;
 export import AnyStaticFormField = FormTypes.AnyStaticField;
